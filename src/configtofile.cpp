@@ -131,6 +131,10 @@ void ConfigToFile::loadDeviceConfigFromFile(QWidget *parent, const QString &file
         devC.axis_config[i].button2_type = uint8_t(deviceSettings.value("Button2Type", devC.axis_config[i].button2_type).toInt());
         devC.axis_config[i].button3_type = uint8_t(deviceSettings.value("Button3Type", devC.axis_config[i].button3_type).toInt());
         devC.axis_config[i].prescaler = uint8_t(deviceSettings.value("Prescaler", devC.axis_config[i].prescaler).toInt());
+
+        devC.axis_config[i].hx711_scale = deviceSettings.value("HX711Scale", devC.axis_config[i].hx711_scale).toDouble();
+        devC.axis_config[i].hx711_offset = deviceSettings.value("HX711Offset", devC.axis_config[i].hx711_offset).toDouble();
+
         deviceSettings.endGroup();
         // axes curves
         deviceSettings.beginGroup("AxesCurvesConfig_" + QString::number(i));
@@ -340,6 +344,8 @@ void ConfigToFile::saveDeviceConfigToFile(const QString &fileName, dev_config_t 
         deviceSettings.setValue("Button2Type", devC.axis_config[i].button2_type);
         deviceSettings.setValue("Button3Type", devC.axis_config[i].button3_type);
         deviceSettings.setValue("Prescaler", devC.axis_config[i].prescaler);
+        deviceSettings.setValue("HX711Scale", devC.axis_config[i].hx711_scale);
+        deviceSettings.setValue("HX711Offset", devC.axis_config[i].hx711_offset);
         deviceSettings.endGroup();
         // axes curves
         deviceSettings.beginGroup("AxesCurvesConfig_" + QString::number(i));

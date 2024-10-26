@@ -78,7 +78,8 @@ typedef struct
     uint8_t					button3_type	:3;
     uint8_t					prescaler;
     uint8_t					reserved[1];
-
+    float                  hx711_offset;
+    float                  hx711_scale;
 } axis_config_t;
 
 enum
@@ -104,7 +105,7 @@ enum
     AS5048A_SPI,
     TLE5012,
     MLX90363,
-
+    HX711
 };
 
 typedef struct
@@ -170,6 +171,9 @@ enum
 
     MLX90363_CS,
     SHIFT_REG_CLK,
+
+    HX711_DOUT,
+    HX711_SCK
 };
 typedef int8_t pin_t;
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1068</width>
-    <height>115</height>
+    <width>922</width>
+    <height>164</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -19,7 +19,7 @@
   <property name="maximumSize">
    <size>
     <width>16777215</width>
-    <height>115</height>
+    <height>164</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -44,12 +44,12 @@
    <item>
     <widget class="QFrame" name="frame">
      <property name="frameShape">
-      <enum>QFrame::Box</enum>
+      <enum>QFrame::Shape::Box</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <layout class="QGridLayout" name="layoutG_AxisExtend" columnstretch="1,2,3,1,1,1,0,0" columnminimumwidth="95,0,0,0,0,0,0,0">
+     <layout class="QGridLayout" name="layoutG_AxisExtend" columnstretch="1,0,0,0,0,0,0,0,0">
       <property name="leftMargin">
        <number>0</number>
       </property>
@@ -62,18 +62,22 @@
       <property name="bottomMargin">
        <number>0</number>
       </property>
-      <item row="2" column="0">
-       <widget class="QLabel" name="text_chanelEncoder">
+      <item row="0" column="8">
+       <widget class="QLabel" name="text_bits">
         <property name="text">
-         <string>Chanel/Encoder</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <string> bits</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="CenteredCBox" name="comboBox_Function"/>
+      <item row="0" column="6">
+       <widget class="QLabel" name="text_resolution">
+        <property name="text">
+         <string>Resolution</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
       </item>
       <item row="2" column="1">
        <widget class="QLabel" name="text_axisSource2">
@@ -87,34 +91,57 @@
          <string>Function axis</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="CenteredCBox" name="comboBox_AxisSource2">
-        <property name="enabled">
-         <bool>false</bool>
+         <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
         </property>
        </widget>
       </item>
       <item row="0" column="4">
+       <widget class="QLabel" name="text_stepDiv">
+        <property name="text">
+         <string>Step div</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="text_i2cAddress">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>I2C address</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
        <widget class="QLabel" name="text_prescaler">
         <property name="text">
          <string>Prescaler %</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
        </widget>
       </item>
-      <item row="0" column="5">
-       <widget class="QLabel" name="text_resolution">
+      <item row="3" column="6" colspan="3">
+       <widget class="QCheckBox" name="checkBox_DynDeadband">
         <property name="text">
-         <string>Resolution</string>
+         <string>Dynamic deadband</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
+       </widget>
+      </item>
+      <item row="1" column="8">
+       <widget class="QLabel" name="text_angle">
+        <property name="text">
+         <string notr="true"> °</string>
         </property>
        </widget>
       </item>
@@ -131,8 +158,8 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
-       <widget class="QSpinBox" name="spinBox_ChanelEncoder">
+      <item row="1" column="5">
+       <widget class="QSpinBox" name="spinBox_Prescaler">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -140,25 +167,167 @@
          </sizepolicy>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
         <property name="correctionMode">
-         <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+         <enum>QAbstractSpinBox::CorrectionMode::CorrectToNearestValue</enum>
         </property>
         <property name="maximum">
+         <number>255</number>
+        </property>
+        <property name="value">
+         <number>100</number>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="CenteredCBox" name="comboBox_AxisSource2">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="6">
+       <widget class="QLabel" name="text_offset">
+        <property name="text">
+         <string>Offset</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="4" colspan="2">
+       <widget class="QLabel" name="label_Filter">
+        <property name="minimumSize">
+         <size>
+          <width>35</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Filter off</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_hxScale">
+        <property name="decimals">
+         <number>7</number>
+        </property>
+        <property name="minimum">
+         <double>-9999900.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>9999900.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>1.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="6">
+       <widget class="QLabel" name="text_deadband">
+        <property name="text">
+         <string>Deadband</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="4" colspan="2">
+       <widget class="QSlider" name="sliderH_Filter">
+        <property name="maximum">
+         <number>7</number>
+        </property>
+        <property name="pageStep">
+         <number>1</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="tickPosition">
+         <enum>QSlider::TickPosition::TicksBelow</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="text_chanelEncoder">
+        <property name="text">
+         <string>Chanel/Encoder</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="7">
+       <widget class="QSpinBox" name="spinBox_Offset">
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+        <property name="correctionMode">
+         <enum>QAbstractSpinBox::CorrectionMode::CorrectToNearestValue</enum>
+        </property>
+        <property name="maximum">
+         <number>360</number>
+        </property>
+        <property name="singleStep">
          <number>15</number>
         </property>
        </widget>
       </item>
-      <item row="0" column="2" rowspan="4">
+      <item row="0" column="1">
+       <widget class="QLabel" name="text_function">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Function</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QSpinBox" name="spinBox_StepDiv">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+        <property name="correctionMode">
+         <enum>QAbstractSpinBox::CorrectionMode::CorrectToNearestValue</enum>
+        </property>
+        <property name="maximum">
+         <number>255</number>
+        </property>
+        <property name="value">
+         <number>255</number>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3" rowspan="4">
        <widget class="QFrame" name="frame_10">
         <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
+         <enum>QFrame::Shape::NoFrame</enum>
         </property>
         <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
+         <enum>QFrame::Shadow::Raised</enum>
         </property>
-        <layout class="QGridLayout" name="gridLayout" columnstretch="1,0,3">
+        <layout class="QGridLayout" name="gridLayout" columnstretch="1,0,0">
          <property name="leftMargin">
           <number>9</number>
          </property>
@@ -180,45 +349,23 @@
             </sizepolicy>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
            <property name="correctionMode">
-            <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+            <enum>QAbstractSpinBox::CorrectionMode::CorrectToNearestValue</enum>
            </property>
            <property name="maximum">
             <number>128</number>
            </property>
           </widget>
          </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="text_button3">
-           <property name="text">
-            <string>Button 3</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
+         <item row="2" column="2">
+          <widget class="CenteredCBox" name="comboBox_Button3"/>
          </item>
-         <item row="1" column="2">
-          <widget class="CenteredCBox" name="comboBox_Button2"/>
-         </item>
-         <item row="0" column="1">
-          <widget class="QSpinBox" name="spinBox_Button1">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-           <property name="correctionMode">
-            <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
-           </property>
-           <property name="maximum">
-            <number>128</number>
+         <item row="0" column="2">
+          <widget class="CenteredCBox" name="comboBox_Button1">
+           <property name="currentIndex">
+            <number>-1</number>
            </property>
           </widget>
          </item>
@@ -228,20 +375,17 @@
             <string>Button 2</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
-         <item row="2" column="2">
-          <widget class="CenteredCBox" name="comboBox_Button3"/>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="text_button1">
+         <item row="2" column="0">
+          <widget class="QLabel" name="text_button3">
            <property name="text">
-            <string>Button 1</string>
+            <string>Button 3</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -254,135 +398,58 @@
             </sizepolicy>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
            <property name="correctionMode">
-            <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+            <enum>QAbstractSpinBox::CorrectionMode::CorrectToNearestValue</enum>
            </property>
            <property name="maximum">
             <number>128</number>
            </property>
           </widget>
          </item>
-         <item row="0" column="2">
-          <widget class="CenteredCBox" name="comboBox_Button1">
-           <property name="currentIndex">
-            <number>-1</number>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="spinBox_Button1">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+           <property name="correctionMode">
+            <enum>QAbstractSpinBox::CorrectionMode::CorrectToNearestValue</enum>
+           </property>
+           <property name="maximum">
+            <number>128</number>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="CenteredCBox" name="comboBox_Button2"/>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="text_button1">
+           <property name="text">
+            <string>Button 1</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
         </layout>
        </widget>
       </item>
-      <item row="1" column="4">
-       <widget class="QSpinBox" name="spinBox_Prescaler">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-        <property name="correctionMode">
-         <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
-        </property>
-        <property name="maximum">
-         <number>255</number>
-        </property>
-        <property name="value">
-         <number>100</number>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="3" colspan="2">
-       <widget class="QLabel" name="label_Filter">
-        <property name="minimumSize">
-         <size>
-          <width>35</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Filter off</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLabel" name="text_function">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Function</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QLabel" name="text_stepDiv">
-        <property name="text">
-         <string>Step div</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QSpinBox" name="spinBox_StepDiv">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-        <property name="correctionMode">
-         <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
-        </property>
-        <property name="maximum">
-         <number>255</number>
-        </property>
-        <property name="value">
-         <number>255</number>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="text_i2cAddress">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>I2C address</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="6">
+      <item row="0" column="7">
        <widget class="QSpinBox" name="spinBox_Resolution">
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
         <property name="correctionMode">
-         <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+         <enum>QAbstractSpinBox::CorrectionMode::CorrectToNearestValue</enum>
         </property>
         <property name="minimum">
          <number>1</number>
@@ -395,89 +462,68 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="7">
-       <widget class="QLabel" name="text_bits">
-        <property name="text">
-         <string> bits</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="5">
-       <widget class="QLabel" name="text_offset">
-        <property name="text">
-         <string>Offset</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="6">
-       <widget class="QSpinBox" name="spinBox_Offset">
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-        <property name="correctionMode">
-         <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
-        </property>
-        <property name="maximum">
-         <number>360</number>
-        </property>
-        <property name="singleStep">
-         <number>15</number>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="7">
-       <widget class="QLabel" name="text_angle">
-        <property name="text">
-         <string notr="true"> °</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="3" colspan="2">
-       <widget class="QSlider" name="sliderH_Filter">
-        <property name="maximum">
-         <number>7</number>
-        </property>
-        <property name="pageStep">
-         <number>1</number>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="tickPosition">
-         <enum>QSlider::TicksBelow</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="6">
+      <item row="2" column="7">
        <widget class="QSpinBox" name="spinBox_Deadband">
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
         <property name="correctionMode">
-         <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+         <enum>QAbstractSpinBox::CorrectionMode::CorrectToNearestValue</enum>
         </property>
         <property name="maximum">
          <number>127</number>
         </property>
        </widget>
       </item>
-      <item row="2" column="5">
-       <widget class="QLabel" name="text_deadband">
-        <property name="text">
-         <string>Deadband</string>
+      <item row="3" column="0">
+       <widget class="QSpinBox" name="spinBox_ChanelEncoder">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+        <property name="correctionMode">
+         <enum>QAbstractSpinBox::CorrectionMode::CorrectToNearestValue</enum>
+        </property>
+        <property name="maximum">
+         <number>15</number>
         </property>
        </widget>
       </item>
-      <item row="3" column="5" colspan="3">
-       <widget class="QCheckBox" name="checkBox_DynDeadband">
+      <item row="3" column="2">
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_hxOffset">
+        <property name="decimals">
+         <number>7</number>
+        </property>
+        <property name="minimum">
+         <double>-9999900.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>9999900.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>0.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="CenteredCBox" name="comboBox_Function"/>
+      </item>
+      <item row="0" column="2" alignment="Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignBottom">
+       <widget class="QLabel" name="label">
         <property name="text">
-         <string>Dynamic deadband</string>
+         <string>HX711 Scale</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2" alignment="Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignBottom">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>HX711 Offset</string>
         </property>
        </widget>
       </item>

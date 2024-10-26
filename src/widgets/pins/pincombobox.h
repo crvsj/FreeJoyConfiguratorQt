@@ -7,7 +7,7 @@
 #include "global.h"
 
 #define PINS_COUNT 30
-#define PIN_TYPE_COUNT 29
+#define PIN_TYPE_COUNT 31
 enum // разделить и вынести отдельно?                 // все структуры в global.h?
 {
   PA_0 = 1,
@@ -60,6 +60,8 @@ enum // разделить и вынести отдельно?                 /
   SPI2_MISO,
   SPI2_SCK,
   SPI2_NSS,
+
+  TOL_5V,
 
   ALL = 999,
 };
@@ -148,25 +150,25 @@ private:
         {PA_5,  {"A5"},    {tr("Pin A5")},     {ANALOG_IN}},
         {PA_6,  {"A6"},    {tr("Pin A6")},     {ANALOG_IN}},
         {PA_7,  {"A7"},    {tr("Pin A7")},     {ANALOG_IN}},
-        {PA_8,  {"A8"},    {tr("Pin A8")},     {}},
-        {PA_9,  {"A9"},    {tr("Pin A9")},     {}},
-        {PA_10, {"A10"},   {tr("Pin A10")},    {}},
-        {PA_15, {"A15"},   {tr("Pin A15")},    {SPI1_NSS}},
+        {PA_8,  {"A8"},    {tr("Pin A8")},     {TOL_5V}},
+        {PA_9,  {"A9"},    {tr("Pin A9")},     {TOL_5V}},
+        {PA_10, {"A10"},   {tr("Pin A10")},    {TOL_5V}},
+        {PA_15, {"A15"},   {tr("Pin A15")},    {SPI1_NSS, TOL_5V}},
         {PB_0,  {"B0"},    {tr("Pin B0")},     {}},
         {PB_1,  {"B1"},    {tr("Pin B1")},     {}},
-        {PB_3,  {"B3"},    {tr("Pin B3")},     {SPI1_SCK}},
-        {PB_4,  {"B4"},    {tr("Pin B4")},     {SPI1_MISO}},
+        {PB_3,  {"B3"},    {tr("Pin B3")},     {SPI1_SCK, TOL_5V}},
+        {PB_4,  {"B4"},    {tr("Pin B4")},     {SPI1_MISO, TOL_5V}},
         {PB_5,  {"B5"},    {tr("Pin B5")},     {SPI1_MOSI}},
-        {PB_6,  {"B6"},    {tr("Pin B6")},     {}},
-        {PB_7,  {"B7"},    {tr("Pin B7")},     {}},
-        {PB_8,  {"B8"},    {tr("Pin B8")},     {I2C1_SCL}},
-        {PB_9,  {"B9"},    {tr("Pin B9")},     {I2C1_SDA}},
-        {PB_10, {"B10"},   {tr("Pin B10")},    {I2C2_SCL}},
-        {PB_11, {"B11"},   {tr("Pin B11")},    {I2C2_SDA}},
-        {PB_12, {"B12"},   {tr("Pin B12")},    {}},
-        {PB_13, {"B13"},   {tr("Pin B13")},    {}},
-        {PB_14, {"B14"},   {tr("Pin B14")},    {}},
-        {PB_15, {"B15"},   {tr("Pin B15")},    {}},
+        {PB_6,  {"B6"},    {tr("Pin B6")},     {TOL_5V}},
+        {PB_7,  {"B7"},    {tr("Pin B7")},     {TOL_5V}},
+        {PB_8,  {"B8"},    {tr("Pin B8")},     {I2C1_SCL, TOL_5V}},
+        {PB_9,  {"B9"},    {tr("Pin B9")},     {I2C1_SDA, TOL_5V}},
+        {PB_10, {"B10"},   {tr("Pin B10")},    {I2C2_SCL, TOL_5V}},
+        {PB_11, {"B11"},   {tr("Pin B11")},    {I2C2_SDA, TOL_5V}},
+        {PB_12, {"B12"},   {tr("Pin B12")},    {TOL_5V}},
+        {PB_13, {"B13"},   {tr("Pin B13")},    {TOL_5V}},
+        {PB_14, {"B14"},   {tr("Pin B14")},    {TOL_5V}},
+        {PB_15, {"B15"},   {tr("Pin B15")},    {TOL_5V}},
         {PC_13, {"C13"},   {tr("Pin C13")},    {}},
         {PC_14, {"C14"},   {tr("Pin C14")},    {}},
         {PC_15, {"C15"},   {tr("Pin C15")},    {}},
@@ -318,6 +320,16 @@ private:
         {I2C2_SDA},
         {},
         {I2C_SCL}, {QColor(90, 155, 140)}},
+
+        {HX711_DOUT,     tr("HX711 DOUT"),
+        {TOL_5V},
+        {},
+        {}, {QColor(224, 124, 109)}},
+
+        {HX711_SCK,     tr("HX711 SCK"),
+        {TOL_5V},
+        {},
+        {}, {QColor(224, 124, 109)}},
     };
 };
 

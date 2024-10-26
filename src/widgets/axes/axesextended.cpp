@@ -115,6 +115,9 @@ void AxesExtended::readFromConfig()
     ui->spinBox_Deadband->setValue(axisCfg->deadband_size);
     // filter
     ui->sliderH_Filter->setValue(axisCfg->filter);
+    // hx711
+    ui->doubleSpinBox_hxOffset->setValue(axisCfg->hx711_offset);
+    ui->doubleSpinBox_hxScale->setValue(axisCfg->hx711_scale);
 }
 
 void AxesExtended::writeToConfig()
@@ -144,4 +147,7 @@ void AxesExtended::writeToConfig()
     axisCfg->deadband_size = ui->spinBox_Deadband->value();
     // filter
     axisCfg->filter = ui->sliderH_Filter->value();
+    //hx711
+    axisCfg->hx711_offset = ui->doubleSpinBox_hxOffset->value();
+    axisCfg->hx711_scale = ui->doubleSpinBox_hxScale->value();
 }
